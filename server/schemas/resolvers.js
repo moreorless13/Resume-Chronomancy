@@ -56,10 +56,15 @@ const resolvers = {
             return { token, user }
         },
 
-        removeUser: async (parent, args, context) => {
-            if (context.user) {
-                return User.findOneAndDelete({ _id: context.user._id });
+        removeUser: async (parent, { userId }, context) => {
+            const user = await User.findById({ _id: userId })
+            console.log(user)
+            try {
+
+            } catch (error) {
+
             }
+
 
             throw new AuthenticationError('You need to be logged in!');
         },
